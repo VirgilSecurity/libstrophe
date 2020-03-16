@@ -107,9 +107,6 @@ target_link_libraries(strophe
         PUBLIC
         $<$<BOOL:${USE_LIBEXPAT}>:${LIBEXPAT_LIBRARIES}>
         $<$<BOOL:${USE_LIBXML2}>:${LIBXML2_LIBRARIES}>
-#        $<$<BOOL:${USE_OPENSSL}>:OpenSSL::SSL>
-        OpenSSL::SSL
-        OpenSSL::Crypto
 #        $<$<BOOL:${USE_OPENSSL}>:${OPENSSL_LIBRARIES}>
         ${OPENSSL_LIBRARIES}
         $<$<BOOL:${USE_GNUTLS}>:${GNUTLS_LIBRARIES}>
