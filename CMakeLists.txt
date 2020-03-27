@@ -99,6 +99,11 @@ if(NOT WIN32)
 endif()
 
 #
+#   Enable position independent code
+#
+set_property(TARGET strophe PROPERTY POSITION_INDEPENDENT_CODE TRUE)
+
+#
 #   -Wall -Werror
 #
 set_target_properties(strophe PROPERTIES COMPILE_FLAGS "-Wall -Werror")
