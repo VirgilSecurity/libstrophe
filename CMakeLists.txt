@@ -106,7 +106,9 @@ set_property(TARGET strophe PROPERTY POSITION_INDEPENDENT_CODE TRUE)
 #
 #   -Wall -Werror
 #
-set_target_properties(strophe PROPERTIES COMPILE_FLAGS "-Wall -Werror")
+if (NOT MINGW)
+    set_target_properties(strophe PROPERTIES COMPILE_FLAGS "-Wall -Werror")
+endif()
 
 target_link_libraries(strophe
         PUBLIC
@@ -116,8 +118,8 @@ target_link_libraries(strophe
         ${OPENSSL_LIBRARIES}
         $<$<BOOL:${USE_GNUTLS}>:${GNUTLS_LIBRARIES}>
         $<$<NOT:$<BOOL:${WIN32}>>:${RESOLV_LIBRARY}>
-        $<$<BOOL:${WIN32}>:WS2_32>
-        $<$<BOOL:${WIN32}>:Winmm>
+        $<$<BOOL:${WIN32}>:ws2_32>
+        $<$<BOOL:${WIN32}>:winmm>
         )
 #
 #   Common include directories
@@ -130,7 +132,7 @@ target_include_directories(strophe
 
         PRIVATE
         $<BUILD_INTERFACE:$<$<BOOL:${USE_LIBEXPAT}>:${LIBEXPAT_INCLUDE_DIR}>>
-        $<BUILD_INTERFACE:$<$<BOOL:${USE_LIBXML2}>:${LIBXML2_INCLUDE_DIR}>>
+        $<BUILD_INTERFACE:$<$<BOOL:${USE_LIBXML2}>:${LIBXML2_INCLUDE_DIR}/../>>
         $<BUILD_INTERFACE:$<$<BOOL:${USE_OPENSSL}>:${OPENSSL_INCLUDE_DIR}>>
         $<BUILD_INTERFACE:$<$<BOOL:${USE_GNUTLS}>:${GNUTLS_INCLUDE_DIR}>>
         $<BUILD_INTERFACE:${VIRGIL_IOT_CONFIG_DIRECTORY}>
